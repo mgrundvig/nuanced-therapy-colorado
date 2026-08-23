@@ -21,16 +21,34 @@
     <nav class="site-nav">
       <a href="index.html">Home</a>
       <a href="meet-the-therapist.html">Meet the Therapist</a>
-      <a href="what-i-do.html">What I Do</a>
+      <a href="what-i-do.html">Services</a>
       <a href="contact.html" aria-current="page">Contact Me</a>
     </nav>
   </div>
 </header>
 
 <section class="page-hero">
+  <svg class="page-hero-motif" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="contourBlob" d="M100,0 C100,25 105,60 81.3,81.3 C60,100 20,95 0,95 C-20,95 -65,100 -84.9,84.9 C-100,72 -100,25 -100,0 C-100,-25 -80,-50 -63.6,-63.6 C-40,-80 -20,-118 0,-118 C20,-118 55,-95 69.3,-69.3 C85,-45 100,-25 100,0 Z"/>
+      <path id="contourBlob2" d="M90,0 C90,25 70,40 49.5,49.5 C25,60 15,110 0,110 C-15,110 -70,100 -91.9,91.9 C-100,80 -95,25 -95,0 C-95,-25 -70,-35 -42.4,-42.4 C-20,-55 -10,-100 0,-100 C15,-100 65,-100 88.4,-88.4 C100,-75 90,-25 90,0 Z"/>
+    </defs>
+    <g fill="none" stroke="var(--color-accent)" stroke-width="1.2">
+      <use href="#contourBlob" transform="translate(300,110) scale(0.32)" vector-effect="non-scaling-stroke" opacity="0.5"/>
+      <use href="#contourBlob" transform="translate(300,110) scale(0.52)" vector-effect="non-scaling-stroke" opacity="0.42"/>
+      <use href="#contourBlob" transform="translate(300,110) scale(0.72)" vector-effect="non-scaling-stroke" opacity="0.34"/>
+      <use href="#contourBlob" transform="translate(300,110) scale(0.92)" vector-effect="non-scaling-stroke" opacity="0.26"/>
+      <use href="#contourBlob" transform="translate(300,110) scale(1.12)" vector-effect="non-scaling-stroke" opacity="0.18"/>
+      <use href="#contourBlob" transform="translate(300,110) scale(1.32)" vector-effect="non-scaling-stroke" opacity="0.1"/>
+      <use href="#contourBlob2" transform="translate(115,95) scale(0.25)" vector-effect="non-scaling-stroke" opacity="0.6"/>
+      <use href="#contourBlob2" transform="translate(115,95) scale(0.43)" vector-effect="non-scaling-stroke" opacity="0.46"/>
+      <use href="#contourBlob2" transform="translate(115,95) scale(0.61)" vector-effect="non-scaling-stroke" opacity="0.32"/>
+      <use href="#contourBlob2" transform="translate(115,95) scale(0.79)" vector-effect="non-scaling-stroke" opacity="0.2"/>
+    </g>
+  </svg>
   <div class="wrap">
     <h1>Contact Me</h1>
-    <p>Reaching out is a good first step. I'll respond as soon as I can.</p>
+    <p>Reaching out is a good first step. I'm so looking forward to connecting with you.</p>
   </div>
 </section>
 
@@ -40,31 +58,28 @@
       <div class="contact-methods">
         <div class="contact-method">
           <span class="label">Email</span>
-          <a href="mailto:PLACEHOLDER@example.com" class="placeholder">[PLACEHOLDER@example.com]</a>
+          <button type="button" class="reveal-btn" data-reveal-type="email" data-user="Z3J1bmR2aWd0aGVyYXB5QGdtYWlsLmNvbQ==">Click to reveal email</button>
         </div>
         <div class="contact-method">
           <span class="label">Phone</span>
-          <a href="tel:+10000000000" class="placeholder">[(XXX) XXX-XXXX]</a>
+          <button type="button" class="reveal-btn" data-reveal-type="phone" data-tel="KzE3MjAzNzg4ODg5" data-display="KDcyMCkgMzc4LTg4ODk=">Click to reveal phone number</button>
         </div>
         <div class="contact-method">
           <span class="label">Location</span>
-          <span class="placeholder">[City, Colorado — in-person and/or telehealth]</span>
+          <span style="display:block; margin-bottom:6px;">Virtual — Available for all parts of Colorado</span>
+          <span style="display:block;">In-Person — Currently unavailable. Updates to come!</span>
         </div>
         <div class="contact-method">
           <span class="label">Office hours</span>
-          <span class="placeholder">[e.g. Mon–Thu, 9am–5pm]</span>
+          <span>Mon–Thu, afternoon and evening availability</span>
         </div>
-      </div>
-
-      <div class="note-box">
-        <span class="placeholder">[PLACEHOLDER: If you use an external scheduling tool like SimplePractice, Calendly, or SimplePractice's client portal, replace this note with a "Book a Session" button linking to it.]</span>
       </div>
     </section>
 
     <section>
       <h2>Before you reach out</h2>
       <p class="lede">
-        <span class="placeholder">[PLACEHOLDER: brief note on what to expect from a first contact — e.g. free 15-minute consultation call, response time, what info to include in your message.]</span>
+        Expect a quick response time during the working week. Please include your contact information in your message.
       </p>
     </section>
   </div>
@@ -81,5 +96,23 @@
 </footer>
 
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script>
+document.querySelectorAll('.reveal-btn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var link = document.createElement('a');
+    if (btn.dataset.revealType === 'email') {
+      var email = atob(btn.dataset.user);
+      link.href = 'mailto:' + email;
+      link.textContent = email;
+    } else {
+      var tel = atob(btn.dataset.tel);
+      var display = atob(btn.dataset.display);
+      link.href = 'tel:' + tel;
+      link.textContent = 'Text or call at ' + display;
+    }
+    btn.replaceWith(link);
+  });
+});
+</script>
 </body>
 </html>
